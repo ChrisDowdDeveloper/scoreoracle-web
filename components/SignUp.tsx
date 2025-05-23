@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { supabase } from '@/utils/supabaseClient';
-import { createUser } from '@/utils/auth/auth';
 import { useUser } from '@/context/UserContext';
+import { createUserInBackend } from '@/utils/auth/auth';
 
 const SignUp = () => {
   const { setUser } = useUser();
@@ -29,7 +29,7 @@ const SignUp = () => {
     const accessToken = data.session.access_token;
 
     try {
-      const response = await createUser(accessToken, {
+      const response = await createUserInBackend(accessToken, {
         email,
         name,
         username,
